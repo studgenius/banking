@@ -38,7 +38,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
                         <Image
                             alt="Bissō Bēssē Logo"
-                            src='/icons/logo.svg'
+                            src='/icons/logothree.svg'
                             width={34}
                             height={34}
                         />

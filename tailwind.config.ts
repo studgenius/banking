@@ -10,6 +10,7 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./constants/**/*.{ts,tsx}",
+    "./src/styles/theme.css",
   ],
   theme: {
     container: {
