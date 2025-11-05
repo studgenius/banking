@@ -21,7 +21,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
                         height={34}
                         className="size-6 max-xl:size-14"
                     />
-                    <h1 className="sidebar-logo">BissoBesse</h1>
+                    <h1 className="sidebar-logo">BissōBēssē</h1>
                 </Link>
 
                 {sidebarLinks.map((item) => {

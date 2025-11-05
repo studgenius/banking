@@ -198,13 +198,13 @@
 
   /* Sidebar */
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-400 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen min-w-auto flex-col justify-between border-r border-gray-400 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
   }
   .sidebar-logo {
     @apply 2xl:text-26 font-ibm-plex-serif text-24 font-bold text-black-1 max-xl:hidden;
   }
   .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
+    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start overflow-x-auto;
   }
   .sidebar-label { @apply text-16 font-semibold text-black-2 max-xl:hidden; }
 
