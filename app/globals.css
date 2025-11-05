@@ -243,11 +243,16 @@
     @apply flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8;
   }
   .form-item { @apply flex flex-col gap-1.5; }
-  .form-label { @apply text-14 w-full max-w-[280px] font-medium text-gray-700; }
+  .form-label { @apply text-14 w-full max-w-[280px] font-medium text-gray-700}
   .form-message { @apply text-12 text-red-500; }
   .form-btn {
     @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form;
   }
+  /*@media (min-width: 1024px) {
+    .form-btn {
+      @apply text-sm px-3 py-2;
+    }
+  }*/
   .form-link { @apply text-14 cursor-pointer font-medium text-bankGradient; }
 
   /* Payment Transfer */
