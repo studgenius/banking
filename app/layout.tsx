@@ -15,7 +15,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Bisso Besse Bank",
+  title: "Bissō Bēssē Bank",
   description: "BB Bank is a modern banking platform for everyone",
   icons: {
     icon: '/icons/logo.svg'
