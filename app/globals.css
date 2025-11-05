@@ -158,7 +158,7 @@
   .right-sidebar {
     @apply no-scrollbar hidden! h-screen! max-h-screen! flex-col! border-l! border-gray-400! xl:flex! w-[355px]! xl:overflow-y-scroll!;
   }
-  .profile-banner { @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat; }
+  .profile-banner { @apply h-[120px] w-full bg-linear-to-r from-sky-500 to-blue-800 bg-cover bg-no-repeat; }
   .profile { @apply relative flex px-6 max-xl:justify-center; }
   .profile-img {
     @apply flex items-center justify-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;

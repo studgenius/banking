@@ -44,7 +44,9 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                         {banks.slice(0, 2).map((bank, index) => (
                             <div
                                 key={bank.$id || index}
-                                className={`absolute ${index === 0 ? "z-10 top-0" : "z-0 top-8 w-[90%]"}`}
+                                className={`absolute ${index === 0
+                                    ? "z-8 top-0 left-0"
+                                    : "z-0 top-10 left-8 scale-95 opacity-95 w-[98%]"}`}
                             >
                                 <BankCard
                                     account={bank}
