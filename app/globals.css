@@ -3,9 +3,9 @@
 
 /* Customized Items*/
 @theme{
-    --color-bank-gradient: linear-gradient(90deg, #0179FE 0%, #4893FF 100%);
-    --color-bank-green-gradient: linear-gradient(90deg, #01797A 0%, #489399 100%);
-    --color-gradient-mesh: url('/icons/gradient-mesh.svg');
+    --background-image-bank-green-gradient: linear-gradient(90deg, #01797A 0%, #489399 100%);
+    --background-image-gradient-mesh: url("/icons/gradient-mesh.svg");
+    --background-image-bank-gradient: linear-gradient(90deg, #0179FE 0%, #4893FF 100%);
     --container-center: true;
     --container-padding: 2rem;
     --container-screen-2xl: 1400px;
@@ -53,51 +53,51 @@
     --shadow-profile: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-@utility no-scrollbar {
-  &::-webkit-scrollbar {
-  display: none;
+ /* Hide scrollbar for Chrome, Safari and Opera */
+  @utility no-scrollbar {
+    &::-webkit-scrollbar {
+    display: none;
+    }
   }
-}
-/* Hide scrollbar for IE, Edge and Firefox */
-@utility no-scrollbar {
- -ms-overflow-style: none; /* IE and Edge */
- scrollbar-width: none; /* Firefox */
-}
+  /* Hide scrollbar for IE, Edge and Firefox */
+  @utility no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 
-@utility glassmorphism {
- background: rgba(255, 255, 255, 0.25);
- backdrop-filter: blur(4px);
- -webkit-backdrop-filter: blur(4px);
-}
+  @utility glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
 
-@utility custom-scrollbar {
-  &::-webkit-scrollbar {
-  width: 3px;
-  height: 3px; 
-  border-radius: 2px;
+  @utility custom-scrollbar {
+    &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px; 
+    border-radius: 2px;
+    }
   }
-}
-@utility custom-scrollbar {
-  &::-webkit-scrollbar-track {
-  background: #dddddd;
+  @utility custom-scrollbar {
+    &::-webkit-scrollbar-track {
+    background: #dddddd;
+    }
   }
-}
-@utility custom-scrollbar {
-  &::-webkit-scrollbar-thumb {
-  background: #5c5c7b;
-  border-radius: 50px;
+  @utility custom-scrollbar {
+    &::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+    }
   }
-}
-@utility custom-scrollbar {
-  &::-webkit-scrollbar-thumb:hover {
-  background: #7878a3;
+  @utility custom-scrollbar {
+    &::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+    }
   }
-}
 
 /* Global reset */
 @layer utilities {
-
+  
   /* In your global CSS */
   .bg-bank-gradient {
     background: var(--color-bank-gradient);
@@ -156,7 +156,7 @@
 
   /* Right Sidebar */
   .right-sidebar {
-    @apply no-scrollbar! hidden! h-screen! max-h-screen! flex-col! border-l! border-gray-200! xl:flex w-[355px]! xl:overflow-y-scroll!;
+    @apply no-scrollbar hidden! h-screen! max-h-screen! flex-col! border-l! border-gray-400! xl:flex! w-[355px]! xl:overflow-y-scroll!;
   }
   .profile-banner { @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat; }
   .profile { @apply relative flex px-6 max-xl:justify-center; }
@@ -213,7 +213,7 @@
     @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-bank-gradient shadow-creditCard backdrop-blur-[6px];
   }
   .bank-card_content {
-    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 px-5 pb-4 pt-5;
+    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-bank-gradient px-5 pb-4 pt-5;
   }
   .bank-card_icon {
     @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 pr-5;
