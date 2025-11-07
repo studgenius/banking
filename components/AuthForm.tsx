@@ -22,6 +22,9 @@ import { authFormSchema } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { signIn } from "@/lib/actions/user.actions"
+import { signUp } from "@/lib/actions/user.actions"
+
 
 const AuthForm = ({ type }: { type: string }) => {
 
@@ -53,18 +56,18 @@ const AuthForm = ({ type }: { type: string }) => {
         setIsLoading(true);
 
         try {
-            //sign up with Appwrite & create a plain link token 
+            //sign up with Appwrite & create a plaid link token 
 
             if (type === 'sign-up') {
-                //    const newUser = await signUp(data);
+                const newUser = await signUp(data);
 
-                //    setUser(newUser);
+                setUser(newUser);
             }
 
             if (type === 'sign-in') {
-                //const response = await SignIn ({
-                //    email: data.email,
-                //    password: data.password,
+                //const response = await signIn ({
+                //email: data.email,
+                //password: data.password,
                 //})
 
                 //if (response) router.push('/')
