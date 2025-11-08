@@ -1,17 +1,22 @@
-// src/lib/server/appwrite.js
 "use server";
 
-import { Client, Account, Users } from "node-appwrite";
+import { Client, Account, Databases, Users } from "node-appwrite";
 import { cookies } from "next/headers";
-import { Databases } from "node-appwrite";
 
+export const createUserClient = async () => {
+    const client = new Client()
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
-function getEnvVar(name: string): string {
-    const value = process.env[name];
-    if (!value) {
-        throw new Error(`Missing environment variable: ${name}`);
+    // Attach user session if cookie exists
+    const cookieStore = await cookies();
+    const session = cookieStore.get("appwrite-session");
+    if (session) {
+        client.setSession(session.value);
     }
-    return value;
+
+    const account = new Account(client);
+    return { client, account };
 }
 
 export async function createSessionClient() {
@@ -21,9 +26,7 @@ export async function createSessionClient() {
 
     const cookieStore = await cookies();
     const session = cookieStore.get("appwrite-session");
-    if (!session?.value) {
-        throw new Error("No session cookie found");
-    }
+    if (!session || !session.value) throw new Error("No session");
 
     client.setSession(session.value);
 
@@ -45,10 +48,10 @@ export async function createAdminClient() {
             return new Account(client);
         },
         get database() {
-            return new Databases(client)
+            return new Databases(client);
         },
         get user() {
-            return new Users(client)
+            return new Users(client);
         },
     };
 }

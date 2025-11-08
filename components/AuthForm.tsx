@@ -26,6 +26,8 @@ import { signIn } from "@/lib/actions/user.actions"
 import { signUp } from "@/lib/actions/user.actions"
 
 
+
+
 const AuthForm = ({ type }: { type: string }) => {
 
     const router = useRouter();
