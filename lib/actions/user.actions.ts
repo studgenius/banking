@@ -1,17 +1,25 @@
-"use server";
+'use server';
 
-import { createAdminClient, createUserClient } from "../appwrite";
+import { createAdminClient, createSessionClient } from "../appwrite";
 import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
-import { createSessionClient } from "../appwrite";
+
+
+export const signIn = async () => {
+    try {
+        // Mutattion / Database / Make a Fetch  
+    } catch (error) {
+        console.error('Error', error);
+    }
+}
 
 export const signUp = async (userData: SignUpParams) => {
     const { email, password, firstName, lastName } = userData;
 
     try {
         // 1️⃣ Create the user (admin privileges)
-        const { user } = await createAdminClient();
+        const { user, account } = await createAdminClient();
 
         const newUserAccount = await user.create({
             userId: ID.unique(),
@@ -21,7 +29,6 @@ export const signUp = async (userData: SignUpParams) => {
         });
 
         // 2️⃣ Create a session for the new user
-        const { account } = await createUserClient();
         const session = await account.createEmailPasswordSession({
             email,
             password,

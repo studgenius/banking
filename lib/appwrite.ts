@@ -3,22 +3,8 @@
 import { Client, Account, Databases, Users } from "node-appwrite";
 import { cookies } from "next/headers";
 
-export const createUserClient = async () => {
-    const client = new Client()
-        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
-
-    // Attach user session if cookie exists
-    const cookieStore = await cookies();
-    const session = cookieStore.get("appwrite-session");
-    if (session) {
-        client.setSession(session.value);
-    }
-
-    const account = new Account(client);
-    return { client, account };
-}
-
+// 🧑 SESSION CLIENT (for getLoggedInUser)
+// --------------------------------------------------------
 export async function createSessionClient() {
     const client = new Client()
         .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
@@ -37,6 +23,8 @@ export async function createSessionClient() {
     };
 }
 
+// 🧑‍💼 ADMIN CLIENT (server-only privileged access)
+// --------------------------------------------------------
 export async function createAdminClient() {
     const client = new Client()
         .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
