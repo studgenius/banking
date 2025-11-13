@@ -4,6 +4,7 @@ import { createAdminClient, createSessionClient } from "../appwrite";
 import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
+import { Session } from "node:inspector/promises";
 
 
 export const signIn = async ({ email, password }: signInProps) => {
@@ -12,6 +13,15 @@ export const signIn = async ({ email, password }: signInProps) => {
         const response = await account.createEmailPasswordSession({
             email,
             password,
+        });
+
+        //Store session in cookie
+        const cookieStore = await cookies();
+        cookieStore.set("appwrite-session", response.secret, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "strict",
+            secure: false, //to change to true (applying to https) in production false for development 
         });
 
         return parseStringify(response);
@@ -47,7 +57,7 @@ export const signUp = async (userData: SignUpParams) => {
             path: "/",
             httpOnly: true,
             sameSite: "strict",
-            secure: true,
+            secure: false,
         });
 
         return parseStringify(newUserAccount);
@@ -61,10 +71,19 @@ export const signUp = async (userData: SignUpParams) => {
 export async function getLoggedInUser() {
     try {
         const { account } = await createSessionClient();
-
         const user = await account.get();
-
         return parseStringify(user);
+    } catch (error) {
+        return null;
+    }
+}
+
+export const logoutAccount = async () => {
+    try {
+        const { account } = await createSessionClient();
+
+        (await cookies()).delete('appwrite-session');
+        await account.deleteSession({ sessionId: 'current' });
     } catch (error) {
         return null;
     }
