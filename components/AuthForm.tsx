@@ -68,15 +68,20 @@ const AuthForm = ({ type }: { type: string }) => {
             }
 
             if (type === 'sign-in') {
-                //const response = await signIn ({
-                //email: data.email,
-                //password: data.password,
-                //})
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password,
+                })
 
-                //if (response) router.push('/')
+                console.log("🔑 signIn response:", response);
+
+                if (response) {
+                    console.log("🚀 Redirecting to home...");
+                    router.push('/');
+                }
             }
         } catch (error) {
-            console.log(error);
+            console.error("❌ Sign-in failed or returned null");
         } finally {
             setIsLoading(false);
         }

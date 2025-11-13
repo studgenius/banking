@@ -18,6 +18,9 @@ interface CustomInput {
 }
 
 const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
+
+    const inputId = `${name ?? "input"}-form-item`;
+
     return (
         <FormField
             control={control}
