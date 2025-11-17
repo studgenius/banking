@@ -199,8 +199,8 @@
     @apply flex items-center justify-center flex-col gap-2 rounded-md bg-blue-25/20 px-4 py-2 text-white;
   }
   .header-box { @apply flex flex-col gap-1; }
-  .header-box-title { @apply text-24 lg:text-30 font-bold text-gray-900; }
-  .header-box-subtext { @apply text-14 lg:text-16 font-normal text-gray-600; }
+  .header-box-title { @apply text-30 lg:text-30 font-bold text-gray-900; }
+  .header-box-subtext { @apply text-12 lg:text-14 font-normal text-gray-600; }
 
   /* Sidebar */
   .sidebar {

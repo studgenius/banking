@@ -49,6 +49,7 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                                     : "z-0 top-10 left-8 scale-95 opacity-95 w-[98%]"}`}
                             >
                                 <BankCard
+                                    key={banks[0].$id}
                                     account={banks[0]}
                                     userName={`${user.firstName} ${user.lastName}`}
                                     showBalance={false}

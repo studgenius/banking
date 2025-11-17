@@ -39,23 +39,23 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 export const signIn = async ({ email, password }: signInProps) => {
     try {
         const { account } = await createAdminClient();
-        const response = await account.createEmailPasswordSession({
+        const session = await account.createEmailPasswordSession({
             email,
             password,
         });
 
         //Store session in cookie
         const cookieStore = await cookies();
-        cookieStore.set("appwrite-session", response.secret, {
+        cookieStore.set("appwrite-session", session.secret, {
             path: "/",
             httpOnly: true,
             sameSite: "strict",
             secure: false, //to change to true (applying to https) in production false for development 
         });
 
-        const user = await getUserInfo({ userId: response.userId })
+        const user = await getUserInfo({ userId: session.userId })
 
-        return parseStringify(response);
+        return parseStringify(user);
     } catch (error) {
         console.error('❌ Sign-in failed:', error);
         return null; // ❗ return something falsy but explicit
@@ -113,7 +113,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
             path: "/",
             httpOnly: true,
             sameSite: "strict",
-            secure: false,
+            secure: true,
         });
 
         return parseStringify(newUser);

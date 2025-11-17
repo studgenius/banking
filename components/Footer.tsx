@@ -17,7 +17,7 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
         <footer className="footer">
             <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
                 <p className='text-xl font-bold text-white'>
-                    {user?.firstName[0] || "Guest"}
+                    {user?.firstName[0]}
                 </p>
             </div>
 
