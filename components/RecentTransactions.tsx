@@ -8,25 +8,28 @@ import TransactionsTable from './TransactionsTable'
 const RecentTransactions = ({
     accounts,
     transactions = [],
-    appwriteItemId,
-    page = 1,
+    activeAccountId,
 }: RecentTransactionsProps) => {
+
+    // Default to first account if none selected
+    const currentAccountId = activeAccountId || accounts[0]?.id;
+
     return (
         <section className="recent-transactions">
             <header className="flex items-center justify-between">
                 <h2 className="recent-transactions-label">
                     Recent Transactions
                 </h2>
-                <Link href={`/transaction-history/?id=${appwriteItemId}`} className='view-all-btn'>
+                <Link href={`/transaction-history/?id=${currentAccountId}`} className='view-all-btn'>
                     View All
                 </Link>
             </header>
 
-            <Tabs defaultValue={appwriteItemId} className="w-full">
+            <Tabs defaultValue={currentAccountId} className="w-full">
                 <TabsList className="recent-transactions-tablist">
                     {accounts.map((account: Account) => (
-                        <TabsTrigger key={account.id} value={account.appwriteItemId}>
-                            <BankTabItem key={account.id} account={account} appwriteItemId={appwriteItemId} />
+                        <TabsTrigger key={account.id} value={account.id}>
+                            <BankTabItem account={account} />
                         </TabsTrigger>
                     ))}
                     <TabsTrigger value="password">Password</TabsTrigger>
@@ -34,20 +37,20 @@ const RecentTransactions = ({
 
                 {accounts.map((account: Account) => (
                     <TabsContent
-                        value={account.appwriteItemId}
+                        value={account.id}
                         key={account.id}
                         className="space-y-4"
                     >
 
                         <BankInfo
                             account={account}
-                            appwriteItemId={appwriteItemId}
+                            appwriteItemId={account.id}
                             type="full"
                         />
 
                         <TransactionsTable
                             transactions={transactions.filter(
-                                t => t.accountId === account.appwriteItemId
+                                t => t.accountId === account.id
                             )}
                         />
                     </TabsContent>
