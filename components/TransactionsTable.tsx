@@ -70,19 +70,19 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                                 {isDebit ? `-${amount}` : isCredit ? amount : amount}
                             </TableCell>
 
-                            <TableCell className="pr-2 pl-10">
+                            <TableCell className="pr-2 pl-5">
                                 <CategoryBadge category={status} />
                             </TableCell>
 
-                            <TableCell className="min-w-30 pr-2 pl-10">
+                            <TableCell className="min-w-30 pr-2 pl-5">
                                 {formatDateTime(new Date(t.date)).dateTime}
                             </TableCell>
 
-                            <TableCell className="pr-2 pl-10 capitalize min-w-2/12">
+                            <TableCell className="pr-2 pl-5 capitalize min-w-2/12">
                                 {t.paymentChannel}
                             </TableCell>
 
-                            <TableCell className="pr-2 pl-10 max-md:hidden">
+                            <TableCell className="pr-2 pl-5 max-md:hidden">
                                 <CategoryBadge category={t.category} />
                             </TableCell>
                         </TableRow>

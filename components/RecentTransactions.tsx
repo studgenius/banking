@@ -29,10 +29,9 @@ const RecentTransactions = ({
                 <TabsList className="recent-transactions-tablist">
                     {accounts.map((account: Account) => (
                         <TabsTrigger key={account.id} value={account.id}>
-                            <BankTabItem account={account} />
+                            <BankTabItem account={account} appwriteItemId={activeAccountId} />
                         </TabsTrigger>
                     ))}
-                    <TabsTrigger value="password">Password</TabsTrigger>
                 </TabsList>
 
                 {accounts.map((account: Account) => (
@@ -55,8 +54,6 @@ const RecentTransactions = ({
                         />
                     </TabsContent>
                 ))}
-                <TabsContent value="account">Make changes to your account here.</TabsContent>
-                <TabsContent value="password">Change your password here.</TabsContent>
             </Tabs>
         </section>
     )
