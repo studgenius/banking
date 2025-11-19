@@ -176,7 +176,7 @@ declare interface PaginationProps {
 
 declare interface PlaidLinkProps {
   user: User;
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "default";
   dwollaCustomerId?: string;
 }
 
@@ -227,9 +227,10 @@ declare interface SiderbarProps {
 
 declare interface RecentTransactionsProps {
   accounts: Account[];
-  transactions: Transaction[];
+  transactions?: Transaction[];
   appwriteItemId: string;
-  page: number;
+  page?: number;
+  activeAccountId?: string; // from query param
 }
 
 declare interface TransactionHistoryTableProps {

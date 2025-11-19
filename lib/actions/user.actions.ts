@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
 import { Session } from "node:inspector/promises";
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from "plaid";
+
 import { Languages } from "lucide-react";
 import { plaidClient } from "../plaid";
 import { revalidatePath } from "next/cache";
@@ -155,7 +156,7 @@ export const createLinkToken = async (user: User) => {
                 client_user_id: user.$id
             },
             client_name: `${user.firstName} ${user.lastName}`,
-            products: ['auth'] as Products[],
+            products: ["auth", "transactions"] as Products[],
             language: 'en',
             country_codes: ['US'] as CountryCode[],
         }
@@ -293,6 +294,27 @@ export const getBank = async ({ documentId }: getBankProps) => {
                     Query.equal('$id', [documentId])
                 ],
         });
+
+        return parseStringify(bank.documents[0]);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
+    try {
+        const { database } = await createAdminClient();
+
+        const bank = await database.listDocuments({
+            databaseId: DATABASE_ID!,
+            collectionId: BANK_COLLECTION_ID!,
+            queries:
+                [
+                    Query.equal('accountId', [accountId])
+                ],
+        });
+
+        if (bank.total !== 1) return null;
 
         return parseStringify(bank.documents[0]);
     } catch (error) {

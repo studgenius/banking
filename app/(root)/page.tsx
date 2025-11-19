@@ -5,14 +5,18 @@ import TotalBalanceBox from "@/components/TotalBalanceBox"
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions"
 import { getLoggedInUser } from "@/lib/actions/user.actions"
 
-const Home = async ({ searchParams }: SearchParamProps) => {
-    const { id, page } = await searchParams;
+
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
     const currentPage = Number(page as string) || 1;
     const loggedIn = await getLoggedInUser();
+    if (!loggedIn)
+        // OR Option 2 — return fallback UI
+        return <div>You must be logged in to view this page.</div>;
+
 
     const accounts = await getAccounts({ userId: loggedIn.$id })
-    if (!accounts) return;
+    if (!accounts) return <div>No accounts found.</div>;
 
     const accountsData = accounts?.data;
     const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
@@ -47,7 +51,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 
             <RightSidebar
                 user={loggedIn}
-                transactions={accounts?.transactions}
+                transactions={account?.transactions}
                 banks={accountsData?.slice(0, 2)}
             />
         </section>
