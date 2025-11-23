@@ -81,7 +81,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
             bankId: bank.$id,
         });
 
-        const transferTransactions = transferTransactionsData?.documents?.map(
+        const transferTransactions = transferTransactionsData.documents.map(
             (transferData: Transaction) => ({
                 id: transferData.$id,
                 name: transferData.name!,
@@ -91,7 +91,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
                 category: transferData.category,
                 type: transferData.senderBankId === bank.$id ? "debit" : "credit",
             })
-        ) || [];
+        );
 
         // get institution info from plaid
         const institution = await getInstitution({
@@ -171,7 +171,7 @@ export const getTransactions = async ({
                 accountId: transaction.account_id,
                 amount: transaction.amount,
                 pending: transaction.pending,
-                category: transaction.personal_finance_category ? transaction.personal_finance_category.primary : "",
+                category: transaction.category ? transaction.category[0] : "",
                 date: transaction.date,
                 image: transaction.logo_url,
             }));

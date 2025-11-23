@@ -15,7 +15,7 @@ const MyBanks = async () => {
             <div className="my-banks">
                 <HeaderBox
                     title="My Bank Accounts"
-                    subtext="Effortlessly manage your banking activites."
+                    subtext="Effortlessly manage your banking activities."
                 />
 
                 <div className="space-y-4">
@@ -25,7 +25,7 @@ const MyBanks = async () => {
                     <div className="flex flex-wrap gap-6">
                         {accounts && accounts.data.map((a: Account) => (
                             <BankCard
-                                key={accounts.id}
+                                key={a.id}
                                 account={a}
                                 userName={loggedIn?.firstName}
                             />
