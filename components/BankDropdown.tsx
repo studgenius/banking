@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -12,7 +11,7 @@ import {
     SelectItem,
     SelectLabel,
     SelectTrigger,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import { formUrlQuery, formatAmount } from "@/lib/utils";
 
 export const BankDropdown = ({
@@ -46,7 +45,7 @@ export const BankDropdown = ({
             onValueChange={(value) => handleBankChange(value)}
         >
             <SelectTrigger
-                className={`flex w-full bg-white gap-3 md:w-[300px] ${otherStyles}`}
+                className={`flex w-full gap-3 md:w-[300px] ${otherStyles}`}
             >
                 <Image
                     src="icons/credit-card.svg"
@@ -57,7 +56,7 @@ export const BankDropdown = ({
                 <p className="line-clamp-1 w-full text-left">{selected.name}</p>
             </SelectTrigger>
             <SelectContent
-                className={`w-full bg-white md:w-[300px] ${otherStyles}`}
+                className={`w-full md:w-[300px] ${otherStyles}`}
                 align="end"
             >
                 <SelectGroup>

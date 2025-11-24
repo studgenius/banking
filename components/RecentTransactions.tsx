@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BankTabItem } from './BankTabItem'
@@ -46,7 +45,6 @@ const RecentTransactions = ({
                         </TabsTrigger>
                     ))}
                 </TabsList>
-
                 {accounts.map((account: Account) => (
                     <TabsContent
                         value={account.appwriteItemId}
@@ -59,14 +57,8 @@ const RecentTransactions = ({
                             type="full"
                         />
 
-                        <TransactionsTable transactions={currentTransactions} />
+                        <TransactionsTable transactions={transactions} />
 
-
-                        {totalPages > 1 && (
-                            <div className="my-4 w-full">
-                                <Pagination totalPages={totalPages} page={page} />
-                            </div>
-                        )}
                     </TabsContent>
                 ))}
             </Tabs>

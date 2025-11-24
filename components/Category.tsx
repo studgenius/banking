@@ -4,10 +4,9 @@ import Image from "next/image";
 import { topCategoryStyles } from "@/constants";
 import { cn } from "@/lib/utils";
 
-import { Progress } from "@radix-ui/react-progress";
-import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { Progress } from "./ui/progress";
 
-const Category = ({ category }: CategoryProps) => {
+export const Category = ({ category }: CategoryProps) => {
     const {
         bg,
         circleBg,
@@ -27,15 +26,11 @@ const Category = ({ category }: CategoryProps) => {
                     <h2 className={cn("font-medium", main)}>{category.name}</h2>
                     <h3 className={cn("font-normal", count)}>{category.count}</h3>
                 </div>
-                <ProgressPrimitive.Root
+                <Progress
                     value={(category.count / category.totalCount) * 100}
-                    className={cn("h-2 w-full rounded-full", progressBg)}
-                >
-                    <ProgressPrimitive.Indicator
-                        className={cn("h-2 w-full", indicator)}
-                        style={{ transform: `translateX(-${100 - (category.count / category.totalCount) * 100}%)` }}
-                    />
-                </ProgressPrimitive.Root>
+                    className={cn("h-2 w-full", progressBg)}
+                    indicatorClassName={cn("h-2 w-full", indicator)}
+                />
             </div>
         </div>
     );

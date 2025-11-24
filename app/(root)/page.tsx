@@ -1,4 +1,3 @@
-
 import HeaderBox from '@/components/HeaderBox'
 import RecentTransactions from '@/components/RecentTransactions';
 import RightSidebar from '@/components/RightSidebar';
@@ -6,7 +5,12 @@ import TotalBalanceBox from '@/components/TotalBalanceBox';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+const Home = async ({ searchParams }: SearchParamProps) => {
+
+    // Unwrap searchParams correctly, since it's a Promise in Next.js 13+
+    const resolved = await searchParams;
+    const { id, page } = resolved;
+
     const currentPage = Number(page as string) || 1;
     const loggedIn = await getLoggedInUser();
     const accounts = await getAccounts({

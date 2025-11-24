@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 
 declare type SearchParamProps = {
-  params: { [key: string]: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ [key: string]: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // ========================================
 
 declare type SignUpParams = {
-  // ? means optional
   firstName: string;
   lastName: string;
   address1: string;
@@ -176,7 +175,7 @@ declare interface PaginationProps {
 
 declare interface PlaidLinkProps {
   user: User;
-  variant?: "primary" | "ghost" | "default";
+  variant?: "primary" | "ghost";
   dwollaCustomerId?: string;
 }
 
@@ -226,11 +225,10 @@ declare interface SiderbarProps {
 }
 
 declare interface RecentTransactionsProps {
-  accounts: AccountWithTransactions[];
-  transactions?: Transaction[];
+  accounts: Account[];
+  transactions: Transaction[];
   appwriteItemId: string;
-  page?: number;
-  activeAccountId?: string; // from query param
+  page: number;
 }
 
 declare interface TransactionHistoryTableProps {
@@ -316,7 +314,7 @@ declare interface createBankAccountProps {
   accountId: string;
   bankId: string;
   fundingSourceUrl: string;
-  sharableId: string;
+  shareableId: string;
 }
 
 declare interface getBanksProps {

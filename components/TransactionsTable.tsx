@@ -1,4 +1,3 @@
-
 import {
     Table,
     TableBody,
@@ -42,6 +41,9 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
             </TableHeader>
             <TableBody className="text-10">
                 {transactions.map((t: Transaction) => {
+                    // ⬇️ Add this here
+                    console.log("Transaction category:", t.category);
+                    console.log("Full transaction object:", t);
                     const status = getTransactionStatus(new Date(t.date))
                     const amount = formatAmount(t.amount)
 
@@ -49,10 +51,10 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                     const isCredit = t.type === 'credit';
 
                     return (
-                        <TableRow key={t.id} className={`${isDebit || amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'}} over:bg-none! border-b-DEFAULT!`}>
+                        <TableRow key={t.id} className={`${isDebit || amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'} over:bg-none! border-b-DEFAULT!`}>
                             <TableCell className="max-w-[250px] pl-2 pr-10">
                                 <div className="flex items-center gap-3">
-                                    <h1 className="text-14 truncate font-semibold text-shadow-black-2">
+                                    <h1 className="text-10 truncate font-semibold text-black-2">
                                         {removeSpecialCharacters(t.name)}
                                     </h1>
                                 </div>
@@ -60,8 +62,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
 
                             <TableCell className={`pl-2 pr-10 font-semibold ${isDebit || amount[0] === '-' ?
                                 'text-[#f04438]'
-                                : 'text-[#039855]'
-                                }`}>
+                                : 'text-[#039855]'}`}>
                                 {isDebit ? `-${amount}` : isCredit ? amount : amount}
                             </TableCell>
 
@@ -73,11 +74,11 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                                 {formatDateTime(new Date(t.date)).dateTime}
                             </TableCell>
 
-                            <TableCell className="pl-2 pr-10 capitalize min-w-24">
+                            <TableCell className="pl-2 pr-5 capitalize min-w-24">
                                 {t.paymentChannel}
                             </TableCell>
 
-                            <TableCell className="pl-2 pr-10 max-md:hidden">
+                            <TableCell className="pl-2 pr-5 max-md:hidden">
                                 <CategoryBadge category={t.category} />
                             </TableCell>
                         </TableRow>
