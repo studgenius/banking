@@ -14,16 +14,17 @@ export const createTransaction = async (transaction: CreateTransactionProps) => 
     try {
         const { database } = await createAdminClient();
 
-        const newTransaction = await database.createDocument({
-            databaseId: DATABASE_ID!,
-            collectionId: TRANSACTION_COLLECTION_ID!,
-            documentId: ID.unique(),
-            data: {
-                channel: 'online',
-                category: 'Transfer',
-                ...transaction
-            },
-        });
+        const newTransaction = await database.createDocument(
+            DATABASE_ID!,
+            TRANSACTION_COLLECTION_ID!,
+            ID.unique(),
+            {
+                channel: "online",
+                category: "Transfer",
+                ...transaction,
+            }
+        );
+
 
         return parseStringify(newTransaction);
     } catch (error) {
@@ -35,23 +36,22 @@ export const getTransactionsByBankId = async ({ bankId }: getTransactionsByBankI
     try {
         const { database } = await createAdminClient();
 
-        const senderTransactions = await database.listDocuments({
-            databaseId: DATABASE_ID!,
-            collectionId: TRANSACTION_COLLECTION_ID!,
-            queries:
-                [
-                    Query.equal('senderBankId', bankId)
-                ],
-        });
+        const senderTransactions = await database.listDocuments(
+            DATABASE_ID!,
+            TRANSACTION_COLLECTION_ID!,
+            [
+                Query.equal("senderBankId", bankId),
+            ]
+        );
 
-        const receiverTransactions = await database.listDocuments({
-            databaseId: DATABASE_ID!,
-            collectionId: TRANSACTION_COLLECTION_ID!,
-            queries:
-                [
-                    Query.equal('receiverBankId', bankId)
-                ],
-        });
+        const receiverTransactions = await database.listDocuments(
+            DATABASE_ID!,
+            TRANSACTION_COLLECTION_ID!,
+            [
+                Query.equal("receiverBankId", bankId),
+            ]
+        );
+
 
         const transactions = {
             total: senderTransactions.total + receiverTransactions.total,
