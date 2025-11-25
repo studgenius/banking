@@ -11,17 +11,37 @@ import { transactionCategoryStyles } from "@/constants"
 import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from "@/lib/utils"
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
+
+    if (!category) category = "default";
+
+    const cleaned = category
+        .replace(/[^a-zA-Z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+
+    const matchedKey =
+        (Object.keys(transactionCategoryStyles) as Array<
+            keyof typeof transactionCategoryStyles
+        >).find((key) => key.toLowerCase() === cleaned) ?? "default";
+
+    const styles = transactionCategoryStyles[matchedKey];
+
+    const displayText = matchedKey
+        .toLowerCase()
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
     const {
         borderColor,
         backgroundColor,
         textColor,
         chipBackgroundColor,
-    } = transactionCategoryStyles[category as keyof typeof transactionCategoryStyles] || transactionCategoryStyles.default
-
+    } = styles; // <-- use matchedKey styles
     return (
         <div className={cn('category-badge', borderColor, chipBackgroundColor)}>
             <div className={cn('size-2 rounded-full', backgroundColor)} />
-            <p className={cn('text-12 font-medium', textColor)}>{category}</p>
+            <p className={cn('text-12 font-medium', textColor)}>{displayText}</p>
         </div>
     )
 }

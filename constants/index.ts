@@ -50,7 +50,7 @@ export const ITEMS = [
 ];
 
 export const topCategoryStyles = {
-  "Food and Drink": {
+  "Food And Drink": {
     bg: "bg-blue-25",
     circleBg: "bg-blue-100",
     text: {
@@ -61,20 +61,85 @@ export const topCategoryStyles = {
       bg: "bg-blue-100",
       indicator: "bg-blue-700",
     },
-    icon: "/icons/monitor.svg",
+    icon: "/icons/food.svg",
   },
   Travel: {
-    bg: "bg-success-25",
-    circleBg: "bg-success-100",
+    bg: "bg-cyan-25",
+    circleBg: "bg-cyan-100",
     text: {
-      main: "text-success-900",
-      count: "text-success-700",
+      main: "text-cyan-900",
+      count: "text-cyan-700",
     },
     progress: {
-      bg: "bg-success-100",
-      indicator: "bg-success-700",
+      bg: "bg-cyan-100",
+      indicator: "bg-cyan-700",
+    },
+    icon: "/icons/travel.svg",
+  },
+  Transportation: {
+    bg: "bg-purple-25",
+    circleBg: "bg-purple-100",
+    text: {
+      main: "text-purple-900",
+      count: "text-purple-700",
+    },
+    progress: {
+      bg: "bg-purple-100",
+      indicator: "bg-purple-700",
     },
     icon: "/icons/coins.svg",
+  },
+  "General Merchandise": {
+    bg: "bg-orange-25",
+    circleBg: "bg-orange-100",
+    text: {
+      main: "text-orange-900",
+      count: "text-orange-700",
+    },
+    progress: {
+      bg: "bg-orange-100",
+      indicator: "bg-orange-700",
+    },
+    icon: "/icons/merchandise.svg",
+  },
+  "Loan Payments": {
+    bg: "bg-yellow-25",
+    circleBg: "bg-yellow-100",
+    text: {
+      main: "text-yellow-900",
+      count: "text-yellow-700",
+    },
+    progress: {
+      bg: "bg-yellow-100",
+      indicator: "bg-yellow-700",
+    },
+    icon: "/icons/loan.svg",
+  },
+  Income: {
+    bg: "bg-sky-25",
+    circleBg: "bg-sky-100",
+    text: {
+      main: "text-sky-900",
+      count: "text-sky-700",
+    },
+    progress: {
+      bg: "bg-sky-100",
+      indicator: "bg-sky-700",
+    },
+    icon: "/icons/income.svg",
+  },
+  Transfer: {
+    bg: "bg-red-25",
+    circleBg: "bg-red-100",
+    text: {
+      main: "text-red-900",
+      count: "text-red-700",
+    },
+    progress: {
+      bg: "bg-red-100",
+      indicator: "bg-red-700",
+    },
+    icon: "/icons/transfer.svg",
   },
   default: {
     bg: "bg-pink-25",
@@ -92,10 +157,10 @@ export const topCategoryStyles = {
 };
 
 export const transactionCategoryStyles = {
-  "Food and Drink": {
-    borderColor: "border-pink-600",
-    backgroundColor: "bg-pink-500",
-    textColor: "text-pink-700",
+  "Food And Drink": {
+    borderColor: "border-blue-600",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-blue-700",
     chipBackgroundColor: "bg-inherit",
   },
   Payment: {
@@ -111,9 +176,33 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
   Transfer: {
-    borderColor: "border-red-700",
+    borderColor: "border-red-500",
     backgroundColor: "bg-red-700",
     textColor: "text-red-700",
+    chipBackgroundColor: "bg-inherit",
+  },
+  Transportation: {
+    borderColor: "border-purple-600",
+    backgroundColor: "bg-purple-500",
+    textColor: "text-purple-700",
+    chipBackgroundColor: "bg-inherit",
+  },
+  "General Merchandise": {
+    borderColor: "border-orange-600",
+    backgroundColor: "bg-orange-500",
+    textColor: "text-orange-700",
+    chipBackgroundColor: "bg-inherit",
+  },
+  Income: {
+    borderColor: "border-sky-600",
+    backgroundColor: "bg-sky-500",
+    textColor: "text-sky-700",
+    chipBackgroundColor: "bg-inherit",
+  },
+  "Loan Payments": {
+    borderColor: "border-yellow-600",
+    backgroundColor: "bg-yellow-500",
+    textColor: "text-yellow-700",
     chipBackgroundColor: "bg-inherit",
   },
   Processing: {
@@ -129,9 +218,9 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
   Travel: {
-    borderColor: "border-[#0047AB]",
-    backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
+    borderColor: "border-[#17BAA2]",
+    backgroundColor: "bg-cyan-500",
+    textColor: "text-cyan-700",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
   default: {

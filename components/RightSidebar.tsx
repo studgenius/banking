@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import BankCard from './BankCard'
 import { countTransactionCategories } from '@/lib/utils'
-import Category from './Category'
+import { Category } from './Category'
 
 // Props typing
 declare interface RightSidebarProps {
@@ -14,6 +14,8 @@ declare interface RightSidebarProps {
 
 const RightSidebar: React.FC<RightSidebarProps> = ({ user, transactions, banks }) => {
     const categories: CategoryCount[] = countTransactionCategories(transactions)
+
+
 
     return (
         <aside className="right-sidebar flex flex-col h-full">

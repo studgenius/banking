@@ -11,7 +11,7 @@ interface ProgressPropsWithIndicator
 }
 
 const Progress = React.forwardRef<
-    React.ElementRef<typeof ProgressPrimitive.Root>,
+    React.ComponentRef<typeof ProgressPrimitive.Root>,
     ProgressPropsWithIndicator
 >(({ indicatorClassName, className, value, ...props }, ref) => (
     <ProgressPrimitive.Root
