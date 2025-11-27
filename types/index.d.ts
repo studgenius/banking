@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 declare type SearchParamProps = {
-  params: Promise<{ [key: string]: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  params?: { [key: string]: string }; // optional if you’re not using route params
+  searchParams?: { id?: string; page?: string }; // the query params we care about
 };
 
 // ========================================
@@ -61,6 +61,7 @@ declare type Account = {
   subtype: string;
   appwriteItemId: string;
   sharableId: string;
+  transactions: Transaction[];
 };
 
 declare type Transaction = {
@@ -99,7 +100,14 @@ declare type AccountTypes =
   | "investment"
   | "other";
 
-declare type Category = "Food and Drink" | "Travel" | "Transfer";
+declare type Category =
+  | "Food And Drink"
+  | "Travel"
+  | "Transfer"
+  | "Transportation"
+  | "General Merchandise"
+  | "Income"
+  | "Loan Payments";
 
 declare type CategoryCount = {
   name: string;

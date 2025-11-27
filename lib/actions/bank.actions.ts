@@ -58,7 +58,7 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
             return total + account.currentBalance;
         }, 0);
 
-        return parseStringify({ data: accounts, totalBanks, totalCurrentBalance });
+        return parseStringify({ data: accounts, totalBanks, totalCurrentBalance, next: { tags: ["accounts"] } });
     } catch (error) {
         console.error("An error occurred while getting the accounts:", error);
     }
@@ -123,6 +123,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
         return parseStringify({
             data: account,
             transactions: allTransactions,
+            next: { tags: ["accounts"] }
         });
     } catch (error) {
         console.error("An error occurred while getting the account:", error);

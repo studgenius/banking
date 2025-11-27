@@ -8,7 +8,7 @@ import { getLoggedInUser } from '@/lib/actions/user.actions';
 const Home = async ({ searchParams }: SearchParamProps) => {
 
     // Unwrap searchParams correctly, since it's a Promise in Next.js 13+
-    const resolved = await searchParams;
+    const resolved = await Promise.resolve(searchParams || {});
     const { id, page } = resolved;
 
     const currentPage = Number(page as string) || 1;

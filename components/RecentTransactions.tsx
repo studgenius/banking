@@ -14,7 +14,10 @@ const RecentTransactions = ({
     const rowsPerPage = 10;
     const totalPages = Math.ceil(transactions.length / rowsPerPage);
 
-    const indexOfLastTransaction = page * rowsPerPage;
+    // Clamp page to valid range
+    const safePage = page > totalPages ? 1 : page;
+
+    const indexOfLastTransaction = safePage * rowsPerPage;
     const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage;
 
     const currentTransactions = transactions.slice(
@@ -63,7 +66,7 @@ const RecentTransactions = ({
                             <div className="my-4 w-full">
                                 <Pagination
                                     totalPages={totalPages}
-                                    page={page}
+                                    page={safePage}
                                 />
                             </div>
                         )}
