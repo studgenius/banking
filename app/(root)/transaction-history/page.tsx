@@ -45,7 +45,7 @@ const TransactionHistory = async () => {
                     <div key={index} className="space-y-6">
                         {/* Blue Bold Separator */}
                         {index > 0 && (
-                            <div className="w-full border-t-4 border-blue-600 my-6"></div>
+                            <div className="w-full border-t-2 border-blue-600 my-6"></div>
                         )}
 
                         {/* ACCOUNT HEADER */}

@@ -61,6 +61,15 @@ export async function GET() {
     const downloadDate = formatDate(new Date().toISOString());
     const customerName = `${user.firstName || ""} ${user.lastName || ""}`.trim() || "N/A";
 
+    // Add the getTransactionStatus function to use the same logic
+    function getTransactionStatus(date: Date) {
+      const today = new Date();
+      const twoDaysAgo = new Date(today);
+      twoDaysAgo.setDate(today.getDate() - 2);
+
+      return date > twoDaysAgo ? "Processing" : "Completed"; // Use "Completed" instead of "Success"
+    }
+
     const html = `
       <html>
         <head>
@@ -127,7 +136,7 @@ export async function GET() {
                           <tr>
                             <td>${formatTransactionName(tx.name)}</td>
                             <td>${formatAmount(Number(tx.amount))}</td>
-                            <td>${tx.pending ? "Pending" : "Completed"}</td>
+                            <td>${getTransactionStatus(new Date(tx.date))}</td>
                             <td>${formatDate(tx.date)}</td>
                             <td>${tx.paymentChannel || tx.channel || "N/A"}</td>
                             <td>${formatCategory(tx.category)}</td>

@@ -80,6 +80,7 @@ declare type Transaction = {
   channel: string;
   senderBankId: string;
   receiverBankId: string;
+  status: "Processing" | "Success";  // <-- add this line
 };
 
 declare type Bank = {
