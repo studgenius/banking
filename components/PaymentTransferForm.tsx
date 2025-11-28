@@ -25,6 +25,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { updateBankBalance } from "@/lib/actions/bank.actions";
 
 // Zod schema
 const formSchema = z.object({
@@ -109,6 +110,20 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                 getBank({ documentId: data.senderBank }),
             ]);
 
+            // ⭐ ADD VALIDATION HERE
+            const amountNumber = Number(data.amount);
+
+            // Validate amount format
+            if (isNaN(amountNumber) || amountNumber <= 0) {
+                throw new Error("Invalid transfer amount");
+            }
+
+            // Validate balance
+            if (senderBank.currentBalance < amountNumber) {
+                throw new Error("Insufficient balance");
+            }
+            // ⭐ END OF VALIDATION
+
             const transfer = await createTransfer({
                 sourceFundingSourceUrl: senderBank.fundingSourceUrl,
                 destinationFundingSourceUrl: receiverBank.fundingSourceUrl,
@@ -116,6 +131,18 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
             });
 
             if (!transfer) return;
+
+            await Promise.all([
+                updateBankBalance({
+                    bankId: senderBank.$id,
+                    newBalance: senderBank.currentBalance - amountNumber,
+                }),
+                updateBankBalance({
+                    bankId: receiverBank.$id,
+                    newBalance: receiverBank.currentBalance + amountNumber,
+                }),
+            ]);
+
 
             const transaction = {
                 name: data.name,

@@ -15,6 +15,14 @@ import { parseStringify } from "../utils";
 
 import { getTransactionsByBankId } from "./transaction.actions";
 import { getBanks, getBank } from "./user.actions";
+import { createAdminClient } from "../appwrite";
+
+const {
+    APPWRITE_DATABASE_ID: DATABASE_ID,
+    APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+    APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+} = process.env;
+
 
 // Get multiple bank accounts
 export const getAccounts = async ({ userId }: getAccountsProps) => {
@@ -183,5 +191,31 @@ export const getTransactions = async ({
         return parseStringify(transactions);
     } catch (error) {
         console.error("An error occurred while getting the accounts:", error);
+    }
+};
+
+export const updateBankBalance = async ({
+    bankId,
+    newBalance,
+}: {
+    bankId: string;
+    newBalance: number;
+}) => {
+    try {
+        const { database } = await createAdminClient();
+
+        const updatedBank = await database.updateDocument({
+            databaseId: DATABASE_ID!,
+            collectionId: BANK_COLLECTION_ID!,
+            documentId: bankId,
+            data: {
+                currentBalance: newBalance,
+            },
+        });
+
+        return parseStringify(updatedBank);
+    } catch (error) {
+        console.error("❌ Failed to update bank balance:", error);
+        throw error;
     }
 };

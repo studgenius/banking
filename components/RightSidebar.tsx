@@ -4,6 +4,7 @@ import React from 'react'
 import BankCard from './BankCard'
 import { countTransactionCategories } from '@/lib/utils'
 import { Category } from './Category'
+import AddBankLink from './AddBankLink'
 
 // Props typing
 declare interface RightSidebarProps {
@@ -41,10 +42,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ user, transactions, banks }
                 {/* Header */}
                 <div className="flex w-full justify-between items-center">
                     <h2 className="header-2 text-lg font-semibold">My Banks</h2>
-                    <Link href="/" className="flex gap-2 items-center">
-                        <Image src="/icons/plus.svg" width={20} height={20} alt="plus" />
-                        <span className="text-14 font-semibold text-gray-600">Add Bank</span>
-                    </Link>
+                    <AddBankLink user={user} />
                 </div>
 
                 {/* Stacked Cards */}

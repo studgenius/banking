@@ -76,7 +76,6 @@ declare type Transaction = {
   category: string;
   date: string;
   image: string;
-  type: string;
   $createdAt: string;
   channel: string;
   senderBankId: string;
@@ -96,7 +95,7 @@ declare type Bank = {
 declare type AccountTypes =
   | "depository"
   | "credit"
-  | "loan "
+  | "loan"
   | "investment"
   | "other";
 
@@ -183,7 +182,7 @@ declare interface PaginationProps {
 
 declare interface PlaidLinkProps {
   user: User;
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "default";
   dwollaCustomerId?: string;
 }
 
@@ -238,6 +237,7 @@ declare interface RecentTransactionsProps {
   appwriteItemId: string;
   page: number;
 }
+
 
 declare interface TransactionHistoryTableProps {
   transactions: Transaction[];
@@ -336,3 +336,5 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+
+
