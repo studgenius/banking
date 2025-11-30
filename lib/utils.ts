@@ -88,19 +88,14 @@ interface UrlQueryParams {
   value: string;
 }
 
-export function formUrlQuery({ params, key, value }: UrlQueryParams) {
-  const currentUrl = qs.parse(params);
+export function formUrlQuery({ key, value }: UrlQueryParams) {
+  const url = new URL(window.location.href);
 
-  currentUrl[key] = value;
+  url.searchParams.set(key, String(value));
 
-  return qs.stringifyUrl(
-    {
-      url: window.location.pathname,
-      query: currentUrl,
-    },
-    { skipNull: true }
-  );
+  return url.toString();
 }
+
 
 export function getAccountTypeColors(type: AccountTypes) {
   switch (type) {

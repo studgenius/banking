@@ -1,4 +1,3 @@
-
 "use server";
 
 import {
@@ -194,16 +193,30 @@ export const getTransactions = async ({
     }
 };
 
+/**
+ * Update bank balance in Appwrite
+ */
 export const updateBankBalance = async ({
     bankId,
-    newBalance,
+    amountChange, // can be positive or negative
 }: {
     bankId: string;
-    newBalance: number;
+    amountChange: number;
 }) => {
     try {
         const { database } = await createAdminClient();
 
+        // Fetch current balance
+        const bankDoc = await database.getDocument({
+            databaseId: DATABASE_ID!,
+            collectionId: BANK_COLLECTION_ID!,
+            documentId: bankId,
+        });
+
+        const currentBalance = bankDoc.currentBalance || 0;
+        const newBalance = currentBalance + amountChange;
+
+        // Update balance
         const updatedBank = await database.updateDocument({
             databaseId: DATABASE_ID!,
             collectionId: BANK_COLLECTION_ID!,
@@ -216,6 +229,41 @@ export const updateBankBalance = async ({
         return parseStringify(updatedBank);
     } catch (error) {
         console.error("❌ Failed to update bank balance:", error);
+        throw error;
+    }
+};
+
+/**
+ * Process a transfer and adjust balances immediately
+ */
+export const processTransfer = async ({
+    senderBankId,
+    receiverBankId,
+    amount,
+}: {
+    senderBankId: string;
+    receiverBankId: string;
+    amount: number;
+}) => {
+    try {
+        // 1️⃣ Deduct from sender
+        await updateBankBalance({
+            bankId: senderBankId,
+            amountChange: -amount,
+        });
+
+        // 2️⃣ Add to receiver
+        await updateBankBalance({
+            bankId: receiverBankId,
+            amountChange: amount,
+        });
+
+        // 3️⃣ Optionally, create transfer transactions in Appwrite
+        // createTransaction({ ... })
+
+        return { success: true };
+    } catch (error) {
+        console.error("❌ Transfer processing failed:", error);
         throw error;
     }
 };
