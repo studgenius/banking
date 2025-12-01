@@ -5,6 +5,19 @@ import { getLoggedInUser } from '@/lib/actions/user.actions'
 
 const Transfer = async () => {
     const loggedIn = await getLoggedInUser();
+
+    // If no user, handle gracefully
+    if (!loggedIn) {
+        return (
+            <section className="payment-transfer">
+                <HeaderBox
+                    title="Payment Transfer"
+                    subtext="You must be logged in to view this page."
+                />
+                <p className="text-center mt-4">Please log in to continue.</p>
+            </section>
+        );
+    }
     const accounts = await getAccounts({
         userId: loggedIn.$id
     })
