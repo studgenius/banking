@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Bissō Bēssē Bank",
   description: "BB Bank is a modern banking platform for everyone",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logothree.svg'
   }
 };
 
