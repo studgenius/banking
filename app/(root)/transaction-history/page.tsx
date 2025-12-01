@@ -8,6 +8,19 @@ import TransactionsTable from '@/components/TransactionsTable';
 const TransactionHistory = async () => {
 
     const loggedIn = await getLoggedInUser();
+
+    //if no user logged in, render a friendly message
+    if (!loggedIn) {
+        return (
+            <div className="transactions">
+                <HeaderBox
+                    title="Transaction History"
+                    subtext="You must be logged in to view this page."
+                />
+                <p className="text-center mt-4">Please log in to continue.</p>
+            </div>
+        );
+    }
     const accounts = await getAccounts({ userId: loggedIn.$id });
 
     if (!accounts) return null;

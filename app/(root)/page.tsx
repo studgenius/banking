@@ -13,6 +13,18 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 
     const currentPage = Number(page as string) || 1;
     const loggedIn = await getLoggedInUser();
+    // If no user, handle gracefully
+    if (!loggedIn) {
+        return (
+            <section className="home">
+                <HeaderBox
+                    title="Home"
+                    subtext="You must be logged in to view this page."
+                />
+                <p className="text-center mt-4">Please log in to continue.</p>
+            </section>
+        );
+    }
     const accounts = await getAccounts({
         userId: loggedIn.$id
     })
