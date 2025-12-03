@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  }
-} as any;
+  // Other Next.js configuration options can go here
+};
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:

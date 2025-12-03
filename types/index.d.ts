@@ -11,6 +11,7 @@ declare type SignUpParams = {
   firstName: string;
   lastName: string;
   address1: string;
+  apt?: string;
   city: string;
   state: string;
   postalCode: string;
@@ -35,6 +36,7 @@ declare type User = {
   lastName: string;
   name: string;
   address1: string;
+  apt?: string;
   city: string;
   state: string;
   postalCode: string;
@@ -338,4 +340,34 @@ declare interface getBankByAccountIdProps {
   accountId: string;
 }
 
+// Type for Nominatim API results
+declare interface NominatimPlace {
+  place_id: number;
+  display_name: string;
+  lat: string;
+  lon: string;
+  address?: {
+    city?: string;
+    town?: string;
+    village?: string;
+    state?: string;
+    postcode?: string;
+  };
+}
+
+declare interface Props {
+  control: Control<any>; // Replace `any` with your form type if available
+  form: {
+    setValue: UseFormSetValue<any>;
+  };
+}
+
+declare interface CustomDatePickerProps<T extends FieldValues> {
+  control: Control<T>;
+  name: FieldPath<T>;
+  label: string;
+  placeholder?: string;
+  minDate?: Date;
+  maxDate?: Date;
+}
 

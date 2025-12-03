@@ -27,9 +27,12 @@ import { useRouter } from "next/navigation"
 import { signIn } from "@/lib/actions/user.actions"
 import { signUp } from "@/lib/actions/user.actions"
 import PlaidLink from "./PlaidLink"
+import CustomDatePicker from "./CustomDatePicker"
 
 
-
+const today = new Date();
+const minAge = 18;
+const maxDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()); // user must be at least 18
 
 const AuthForm = ({ type }: { type: string }) => {
 
@@ -47,6 +50,7 @@ const AuthForm = ({ type }: { type: string }) => {
             lastName: "",
             address1: "",
             city: "",
+            apt: "",
             state: "",
             postalCode: "",
             dateOfBirth: "",
@@ -69,6 +73,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     lastName: data.lastName!,
                     address1: data.address1!,
                     city: data.city!,
+                    apt: data.apt!,
                     state: data.state!,
                     postalCode: data.postalCode!,
                     dateOfBirth: data.dateOfBirth!,
@@ -159,9 +164,16 @@ const AuthForm = ({ type }: { type: string }) => {
                                         name='address1' label='Address'
                                         placeholder='Enter your address' />
 
-                                    <CustomInput control={form.control}
-                                        name='city' label='City'
-                                        placeholder='Enter your city' />
+                                    <div className="flex gap-4">
+                                        <CustomInput control={form.control}
+                                            name='apt' label='Apt / Suite / Unit'
+                                            placeholder='Enter number' />
+
+
+                                        <CustomInput control={form.control}
+                                            name='city' label='City'
+                                            placeholder='Enter your city' />
+                                    </div>
 
                                     <div className="flex gap-4">
                                         <CustomInput control={form.control}
@@ -174,10 +186,11 @@ const AuthForm = ({ type }: { type: string }) => {
                                     </div>
 
                                     <div className="flex gap-4">
-                                        <CustomInput control={form.control}
-                                            name='dateOfBirth' label='Date of Birth'
-                                            placeholder='yyyy-mm-dd' />
-
+                                        <CustomDatePicker control={form.control}
+                                            name="dateOfBirth" label="Date of Birth"
+                                            placeholder="yyyy-mm-dd"
+                                            maxDate={maxDate}
+                                        />
                                         <CustomInput control={form.control}
                                             name='ssn' label='SSN'
                                             placeholder='ex: 1234' />

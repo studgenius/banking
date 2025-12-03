@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -23,10 +22,13 @@
     "chart.js": "^4.5.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "dwolla-v2": "^3.4.0",
     "fontkit": "^2.0.4",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.4",
+    "leaflet": "^1.9.4",
+    "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.552.0",
     "next": "16.0.1",
     "node-appwrite": "^20.0.0",
@@ -39,8 +41,11 @@
     "react": "19.2.0",
     "react-chartjs-2": "^5.3.1",
     "react-countup": "^6.5.3",
+    "react-datepicker": "^8.10.0",
+    "react-day-picker": "^9.11.3",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.66.0",
+    "react-leaflet": "^5.0.0",
     "react-plaid-link": "^4.1.1",
     "react-progress": "^0.0.12",
     "tailwind-merge": "^3.3.1",
@@ -48,6 +53,8 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.21",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "20.19.25",
     "@types/pdfkit": "^0.17.3",
     "@types/react": "19.2.7",
