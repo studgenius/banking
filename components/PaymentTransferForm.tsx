@@ -25,7 +25,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { updateBankBalance } from "@/lib/actions/bank.actions";
+//import { updateBankBalance } from "@/lib/actions/bank.actions";
 
 // Zod schema
 const formSchema = z.object({
@@ -111,10 +111,10 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
             ]);
 
             // ⭐ ADD VALIDATION HERE
-            const amountNumber = Number(data.amount);
+            //const amountNumber = Number(data.amount);
 
             // Validate amount format
-            if (isNaN(amountNumber) || amountNumber <= 0) {
+            /*if (isNaN(amountNumber) || amountNumber <= 0) {
                 throw new Error("Invalid transfer amount");
             }
 
@@ -141,7 +141,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     bankId: receiverBank.$id,
                     newBalance: receiverBank.currentBalance + amountNumber,
                 }),
-            ]);
+            ]);*/
 
 
             const transaction = {

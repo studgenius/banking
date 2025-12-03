@@ -194,7 +194,7 @@ export const getTransactions = async ({
     }
 };
 
-export const updateBankBalance = async ({
+/*export const updateBankBalance = async ({
     bankId,
     newBalance,
 }: {
@@ -218,4 +218,4 @@ export const updateBankBalance = async ({
         console.error("❌ Failed to update bank balance:", error);
         throw error;
     }
-};
+};*/
